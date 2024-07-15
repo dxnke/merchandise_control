@@ -1,0 +1,121 @@
+#include "logindialog.h"
+LoginWidget::LoginWidget(QWidget *parent) : QWidget(parent)
+{
+   //设置边框大小
+   this->setFixedSize(500,800);
+   this->initLoginWidget();
+}
+
+//析构函数
+LoginWidget::~LoginWidget()
+{
+
+}
+//窗口构造函数
+void LoginWidget::initLoginWidget()
+{
+    //randCheck();
+
+    //设置背景
+    QPalette palette;
+    palette.setBrush(QPalette::Background,QBrush(QPixmap(":/image/beijin1.jpg").scaled(900,500)));
+    this->setPalette(palette);
+
+    //this->reg=new RegWidget();
+    //this->mainwidget=new MainWidget();
+
+    //设置字体的格式
+    QFont font,font1;
+    //setPixelSize设置字体的大小
+    font.setPixelSize(20);
+    font1.setPixelSize(30);
+    //标签
+    //标题标签
+    this->titleLabel=new QLabel("登录界面",this);
+    //设置标题的字体格式
+    this->titleLabel->setFont(font1);
+    //设置字体显示的颜色
+    this->titleLabel->setStyleSheet("*{color:white}");
+    //账号标签
+    this->accountLabel=new QLabel("账号：",this);
+    this->accountLabel->setFont(font);
+    this->accountLabel->setStyleSheet("*{color:white}");
+
+    //密码标签
+    this->passwordLabel=new QLabel("密码：",this);
+    this->passwordLabel->setFont(font);
+    this->passwordLabel->setStyleSheet("*{color:white}");
+
+
+
+    //编辑框
+    //账户编辑框
+    this->accountEdit=new QLineEdit("",this);
+    this->accountEdit->setFont(font);
+    //设置输入的账户最大长度为12位
+    this->accountEdit->setMaxLength(12);
+
+    //密码编辑框
+    this->passwordEdit=new QLineEdit("",this);
+    this->passwordEdit->setFont(font);
+    //设置密码长度最大为10个
+    this->passwordEdit->setMaxLength(10);
+    //setEchoMode显示模式密文
+    this->passwordEdit->setEchoMode(QLineEdit::Password);
+
+
+    //按钮
+    //登录按钮
+    this->loginbutton=new QPushButton("登录",this);
+
+
+
+    //盒子布局
+    //水平布局
+    //标题行
+    this->zero=new QHBoxLayout();
+    this->zero->addWidget(this->titleLabel);
+    //第一行
+    this->one=new QHBoxLayout();
+    this->one->addWidget(this->accountLabel);
+    this->one->addWidget(this->accountEdit);
+
+    //第二行
+    this->two=new QHBoxLayout();
+    this->two->addWidget(this->passwordLabel);
+    this->two->addWidget(this->passwordEdit);
+
+    //第三行
+    this->three=new QHBoxLayout();
+
+    //第四行
+    this->four=new QHBoxLayout();
+    this->four->addWidget(this->loginbutton);
+
+    //控件布局格式设置
+    this->zero->setContentsMargins(100,150,10,0);
+    this->one->setContentsMargins(100,0,100,50);
+    this->two->setContentsMargins(100,0,100,50);
+    this->three->setContentsMargins(100,0,100,50);
+    this->four->setContentsMargins(100,0,100,200);
+
+    //加入到垂直布局里面
+    this->all=new QVBoxLayout();
+
+    this->all->addLayout(this->zero);
+    this->all->addStretch(50);
+    this->all->addLayout(this->one);
+    this->all->addLayout(this->two);
+    this->all->addLayout(this->three);
+    this->all->addLayout(this->four);
+    this->setLayout(this->all);
+
+    //信号和槽函数的实现
+}
+
+void LoginWidget::my_slot()
+{
+        emit jump();
+        this->close();
+}
+

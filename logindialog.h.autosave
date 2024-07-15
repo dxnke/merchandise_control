@@ -1,0 +1,64 @@
+#pragma once
+//制作对话框控件
+
+#include <QWidget>
+#include<QString>
+#include<QList>
+#include<QDebug>
+#include<string.h>
+#include<QByteArray>
+#include<QLabel>
+#include<QLineEdit>
+#include<QPushButton>
+#include<QHBoxLayout>
+#include<QVBoxLayout>
+
+#include"checkshing.h"
+
+class LoginWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit LoginWidget(QWidget *parent = nullptr);
+    //析构函数
+    ~LoginWidget();
+    //窗口控件初始化函数
+    void initLoginWidget();
+
+
+
+private:
+    //标签
+    QLabel *titleLabel;//标题
+    QLabel *accountLabel;//账号
+    QLabel *passwordLabel;//密码
+
+    //编辑框
+    QLineEdit *accountEdit;//账户编辑框
+    QLineEdit *passwordEdit;//密码编辑框
+
+    //按钮
+    QPushButton *loginbutton;//登录按钮
+
+    //水平布局
+    QHBoxLayout *zero;
+    QHBoxLayout *one;
+    QHBoxLayout *two;
+    QHBoxLayout *three;
+    QHBoxLayout *four;
+
+    //垂直布局
+    QVBoxLayout *all;
+    
+signals:
+    void my_signal();          //自定义信号函数
+    void jump();               //自定义跳转函数
+    
+    
+public slots:
+    void my_slot();            //自定义的槽函数
+
+};
+
+
+
